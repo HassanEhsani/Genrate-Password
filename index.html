@@ -12,34 +12,40 @@
     <div class="container">
         <h1>Genrate a <br><span>Random Password</span></h1>
         <div class="display">
-            <input type="text" id="Password" placeholder="Password">
-            <img src="images/copy.png" alt="">
+            <input type="text" id="password" placeholder="Password">
+            <img src="images/copy.png" onclick="copyPassword()">
         </div>
         <button onclick="createPassword()"><img src="images/generate.png" alt=""> Genrate Password</button>
     </div>
-</body>
-<script>
-    const passwordBox = document.getElementById("Password");
-    const lenght = 12;
+    <script>
+        const passwordBox = document.getElementById("password");
+        const lenght = 12;
 
-    const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    const lowerCase = "abcdefghijklmnopqrstuvwxyz";
-    const number = "0123456789";
-    const symbol = "@#$%^&*(){}<>~|/-=[]";
-    const allChars = upperCase + lowerCase + number + symbol;
+        const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        const lowerCase = "abcdefghijklmnopqrstuvwxyz";
+        const number = "0123456789";
+        const symbol = "@#$%^&*(){}<>~|/-=[]";
+        const allChars = upperCase + lowerCase + number + symbol;
 
-    function createPassword() {
-        let password = "";
-        password += upperCase[Math.floor(Math.random() * upperCase.lenght)];
-        password += lowerCase[Math.floor(Math.random() * lowerCase.lenght)];
-        password += number[Math.floor(Math.random() * number.lenght)];
-        password += symbol[Math.floor(Math.random() * symbol.lenght)];
+        function createPassword() {
+            let password = "";
+            password += upperCase[Math.floor(Math.random() * upperCase.length)];
+            password += lowerCase[Math.floor(Math.random() * lowerCase.length)];
+            password += number[Math.floor(Math.random() * number.length)];
+            password += symbol[Math.floor(Math.random() * symbol.length)];
 
-        while (lenght > password.length) {
-            password += allChars[Math.floor(Math.random() * allChars.lenght)];
+            while (lenght > password.length) {
+                password += allChars[Math.floor(Math.random() * allChars.length)];
+            }
+            passwordBox.value = password;
         }
-        passwordBox.value = password;
-    }
-</script>
+
+        function copyPassword(){
+            passwordBox.select();
+            document.execCommand("copy");
+        }
+    </script>
+
+</body>
 
 </html>
